@@ -13,9 +13,9 @@ describe('App component', () => {
 
   beforeEach(() => {
     const mockUser = {
-      id: 1568665187737, 
-      firstName: "Travis", 
-      lastName: "Rollins", 
+      id: 1568665187737,
+      firstName: "Travis",
+      lastName: "Rollins",
       feeling: "tired"
     };
 
@@ -62,26 +62,26 @@ describe('App component', () => {
 describe('mapStateToProps', () => {
   it('should return an object with the user information', () => {
     const mockUser = {
-      id: 1568665187737, 
-      firstName: "Travis", 
-      lastName: "Rollins", 
+      id: 1568665187737,
+      firstName: "Travis",
+      lastName: "Rollins",
       feeling: "tired"
     };
 
     const mockState = {
       user: mockUser,
-      messages: [{
-        message: 'Hi there, my name is Dr. Watson. I understand that you have been feeling happy. That is super exciting to hear!',
-        isUser: false,
-      }],
-      errorMsg: ''
-    };
+      clearMessages: undefined,
+      messages: [{isUser: false,
+      message: "Hi there, my name is Dr. Watson. I understand that you have been feeling happy. That is super exciting to hear!",
+      },
+     ],
+  }
     const expected = {
       user: mockUser
     }
 
     const mappedProps = mapStateToProps(mockState);
-    
+
     expect(mappedProps).toEqual(expected);
   });
 });

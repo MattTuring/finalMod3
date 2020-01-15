@@ -19,7 +19,18 @@ export const startConversation = async feeling => {
 }
 
 export const postMessage = async newMessage => {
-
+  let responseData;
+  await fetch('https://drwatson-api.herokuapp.com/api/message', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ newMessage })
+  })
+  .then(response => response.json())
+  .then(data => {return responseData = data})
+  .catch(error => "Watson is sad")
+  return responseData
 }
 
 export const endConversation = async () => {

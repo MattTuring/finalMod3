@@ -34,16 +34,18 @@ export class ChatBox extends Component {
   messageChatBot = async () => {
     try {
       const messageResponse = await postMessage(this.state.message);
+      console.log(messageResponse);
       this.props.addMessage(messageResponse.message, false);
     } catch({ message }) {
-      this.props.hasErrored(message)  
+      this.props.hasErrored(message)
     }
   }
 
   render() {
     const { message } = this.state;
     const { messages, errorMsg } = this.props;
-    const survey = messages.map((message, i) => {
+    console.log(this.props.messages);
+    const survey = this.props.messages.map((message, i) => {
       return <Message
         key={`message${i}`}
         message={message.message}
@@ -70,8 +72,9 @@ export class ChatBox extends Component {
   }
 }
 
-export const mapStateToProps = ({ errorMsg }) => ({
-  errorMsg
+export const mapStateToProps = (state) => ({
+  errorMsg: state.errorMsg,
+  messages: state.messages
 })
 
 export const mapDispatchToProps = dispatch => bindActionCreators({ hasErrored }, dispatch);
